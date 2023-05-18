@@ -14,4 +14,6 @@ public class Customer {
     private String version;
     private LocalDateTime created;
     private LocalDateTime lastModified;
+
+  
 }
