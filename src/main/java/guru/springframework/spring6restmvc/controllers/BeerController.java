@@ -1,5 +1,6 @@
 package guru.springframework.spring6restmvc.controllers;
 
+import guru.springframework.spring6restmvc.model.Customer;
 import guru.springframework.spring6restmvc.services.BeerService;
 import guru.springframework.spring6restmvc.model.Beer;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,13 @@ import java.util.UUID;
 public class BeerController {
     private final BeerService beerService;
 
+    @PatchMapping("{beerId}")
+    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @RequestBody Beer beer) {
+        beerService.updateBearPatchById(beerId, beer);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @DeleteMapping("{beerId}")
     public ResponseEntity deleteBeerById(@PathVariable("beerId") UUID beerId) {
         beerService.deleteBearById(beerId);
@@ -34,7 +42,6 @@ public class BeerController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    ;
 
     @PostMapping
     //@RequestMapping(method = RequestMethod.POST)
