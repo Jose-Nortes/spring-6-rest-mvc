@@ -1,18 +1,18 @@
 package guru.springframework.spring6restmvc.services;
 
-import guru.springframework.spring6restmvc.model.Beer;
+import guru.springframework.spring6restmvc.model.BeerDTO;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface BeerService {
-    List<Beer> listBears();
+    List<BeerDTO> listBears();
 
-    Beer getBeerById(UUID id);
+    BeerDTO getBeerById(UUID id);
 
-    Beer saveNewBeer(Beer beer);
+    BeerDTO saveNewBeer(BeerDTO beer);
 
-    Beer updateBearById(UUID beerId, Beer beer);
+    BeerDTO updateBearById(UUID beerId, BeerDTO beer);
 
-   
+
 }

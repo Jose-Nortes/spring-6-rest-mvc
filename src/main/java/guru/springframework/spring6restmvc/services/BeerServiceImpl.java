@@ -1,7 +1,7 @@
 package guru.springframework.spring6restmvc.services;
 
-import guru.springframework.spring6restmvc.model.Beer;
-import guru.springframework.spring6restmvc.model.BeerStyle;
+import guru.springframework.spring6restmvc.model.BeerDTO;
+import guru.springframework.spring6restmvc.model.BeerStyleDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +13,16 @@ import java.util.*;
 @Service
 public class BeerServiceImpl implements BeerService {
 
-    private Map<UUID, Beer> beerMap;
+    private Map<UUID, BeerDTO> beerMap;
 
     public BeerServiceImpl() {
         this.beerMap = new HashMap<>();
 
-        Beer beer1 = Beer.builder()
+        BeerDTO beer1 = BeerDTO.builder()
                 .id(UUID.randomUUID())
                 .version(1)
                 .beerName("Galaxy Cat")
-                .beerStyle(BeerStyle.PALE_ALE)
+                .beerStyle(BeerStyleDTO.PALE_ALE)
                 .upc("12356")
                 .price(new BigDecimal("12.99"))
                 .quantityOnHand(122)
@@ -30,11 +30,11 @@ public class BeerServiceImpl implements BeerService {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        Beer beer2 = Beer.builder()
+        BeerDTO beer2 = BeerDTO.builder()
                 .id(UUID.randomUUID())
                 .version(1)
                 .beerName("Crank")
-                .beerStyle(BeerStyle.PALE_ALE)
+                .beerStyle(BeerStyleDTO.PALE_ALE)
                 .upc("12356222")
                 .price(new BigDecimal("11.99"))
                 .quantityOnHand(392)
@@ -42,11 +42,11 @@ public class BeerServiceImpl implements BeerService {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        Beer beer3 = Beer.builder()
+        BeerDTO beer3 = BeerDTO.builder()
                 .id(UUID.randomUUID())
                 .version(1)
                 .beerName("Sunshine City")
-                .beerStyle(BeerStyle.IPA)
+                .beerStyle(BeerStyleDTO.IPA)
                 .upc("12356")
                 .price(new BigDecimal("13.99"))
                 .quantityOnHand(144)
@@ -60,12 +60,12 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public List<Beer> listBears() {
+    public List<BeerDTO> listBears() {
         return new ArrayList<>(beerMap.values());
     }
 
     @Override
-    public Beer getBeerById(UUID id) {
+    public BeerDTO getBeerById(UUID id) {
 
         log.debug("Get Beer Id - in service, Id: " + id.toString());
 
@@ -73,8 +73,8 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public Beer saveNewBeer(Beer beer) {
-        Beer beerSaved = Beer.builder()
+    public BeerDTO saveNewBeer(BeerDTO beer) {
+        BeerDTO beerSaved = BeerDTO.builder()
                 .id(UUID.randomUUID())
                 .createdDate(LocalDateTime.now())
                 .updateDate(LocalDateTime.now())
@@ -93,8 +93,8 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public Beer updateBearById(UUID beerId, Beer beer) {
-        Beer updatedBeer = beerMap.get(beerId);
+    public BeerDTO updateBearById(UUID beerId, BeerDTO beer) {
+        BeerDTO updatedBeer = beerMap.get(beerId);
         updatedBeer.setBeerName(beer.getBeerName());
         updatedBeer.setBeerStyle(beer.getBeerStyle());
         updatedBeer.setVersion(beer.getVersion());
