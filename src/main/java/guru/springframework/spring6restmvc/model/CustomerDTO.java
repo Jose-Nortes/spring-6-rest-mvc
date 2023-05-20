@@ -14,6 +14,4 @@ public class CustomerDTO {
     private String version;
     private LocalDateTime created;
     private LocalDateTime lastModified;
-
-
 }
